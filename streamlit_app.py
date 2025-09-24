@@ -13,6 +13,31 @@ from datetime import datetime
 import warnings
 import os
 import time
+
+# Production configuration
+st.set_page_config(
+    page_title="Gallstone Risk Assessment",
+    page_icon="🏥",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Hide Streamlit style
+hide_st_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+</style>
+"""
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
+# Environment setup for production
+if 'RENDER' in os.environ:
+    # Running on Render
+    st.cache_data.clear()
+    st.cache_resource.clear()
+
 warnings.filterwarnings('ignore')
 
 # importing Google Generative AI
